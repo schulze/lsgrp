@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <string.h>
 #include <sys/types.h>
+#include <pwd.h>
 #include <grp.h>
 
 const char *usage = "Usage: lsgrp GROUPNAME\n";
@@ -20,6 +21,7 @@ main(int argc, char *argv[]) {
 	}
 	group = argv[1];
 
+	// get info about our group
 	errno = 0;
 	struct group *grp = getgrnam(group);
 	if (grp == NULL) {
@@ -29,6 +31,19 @@ main(int argc, char *argv[]) {
 		return 2;
 	}
 
+	// get the users with group as their primary group
+	errno = 0;
+	struct passwd *user = getpwent();
+	while (user != NULL) {
+		if ((*user).pw_gid == (*grp).gr_gid) {
+			printf("%s\n", (*user).pw_name);
+		}
+		user = getpwent();
+	}
+	if (errno != 0)
+		err(1, NULL);
+
+	// get the secondary members.
 	for (member = (*grp).gr_mem; *member != NULL; member++) {
 		printf("%s\n", *member);
 	}

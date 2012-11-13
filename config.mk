@@ -1,5 +1,5 @@
 # lsgrp version
-VERSION = 0.1
+VERSION = 0.2
 
 # Customize below to fit your system
 
@@ -12,7 +12,7 @@ INCS = -I/usr/include
 LIBS = -L/usr/lib -lc
 
 # flags
-CPPFLAGS = -DVERSION=\"${VERSION}\"
+CPPFLAGS = -DVERSION=\"${VERSION}\" -D_SVID_SOURCE
 CFLAGS = -std=c99 -pedantic -Wall -Wextra -Os ${INCS} ${CPPFLAGS}
 LDFLAGS = -s ${LIBS}
 
