@@ -1,8 +1,9 @@
 Lsgrp lists all the members of a given Unix group.
 
-It is in general not enough to do some greping through /etc/passwd, /etc/group etc., as
-systems like NIS, LDAP or Apple's DirectoryServices can add and change user database records.
-Lsgrp should also list the members of a group, that don't appear in /etc/passwd or /etc/group.
+It is in general not enough to do some greping through /etc/passwd,
+/etc/group etc., as systems like NIS, LDAP or Apple's DirectoryServices
+can add and change user database records.  Lsgrp should also list the
+members of a group, that don't appear in /etc/passwd or /etc/group.
 
 The Makefile and config.mk were snarfed from the suckless.org project.
 The program itself is rather trivial.
